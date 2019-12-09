@@ -1,0 +1,103 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "2a65e7c4-f053-4cbd-9f57-efa4595cbb54": {
+        "id": "2a65e7c4-f053-4cbd-9f57-efa4595cbb54",
+        "parent": null,
+        "name": "TestEmail",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "57c3da73-5964-4165-9499-a8cb6764f624"
+        ],
+        "isRemovable": false,
+        "filePath": "TestEmail"
+      },
+      "57c3da73-5964-4165-9499-a8cb6764f624": {
+        "id": "57c3da73-5964-4165-9499-a8cb6764f624",
+        "parent": "2a65e7c4-f053-4cbd-9f57-efa4595cbb54",
+        "name": "lambda.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "TestEmail/lambda.js",
+        "code": "let AWS = require('aws-sdk');\nconst ses = new AWS.SES();\n\nexports.handler = function (event, context, callback) {\n\n    callback(null, { \"message\": \"Successfully executed\" });\n    ses.sendEmail({\n        Destination: {\n            ToAddresses: ['shikharg@gmail.com'],\n            CcAddresses: [],\n            BccAddresses: []\n        },\n        Message: {\n            Body: {\n                Text: {\n                    Data: `Hi Please see this`\n                }\n            },\n            Subject: {\n                Data: 'Test email Lambda'\n            }\n        },\n        Source: 'mmdemoid4@gmail.com',\n    }, function (err, data) {\n        if (err) console.log(err, err.stack); // an error occurred\n        else console.log(data);           // successful response\n    });\n}",
+        "config": {
+          "runtime": "nodejs8.10",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": []
+        },
+        "triggers": []
+      }
+    },
+    "rootNode": "2a65e7c4-f053-4cbd-9f57-efa4595cbb54",
+    "openFiles": [
+      "57c3da73-5964-4165-9499-a8cb6764f624"
+    ],
+    "currentFileId": "57c3da73-5964-4165-9499-a8cb6764f624",
+    "resources": {
+      "ses-mmdemoid4@gmail.com": {
+        "name": "ses-mmdemoid4@gmail.com",
+        "type": "SES",
+        "config": {
+          "selectedIdentity": "mmdemoid4@gmail.com",
+          "projectRegion": "us-east-1",
+          "params": {
+            "to": "shikharg@gmail.com",
+            "cc": "",
+            "bcc": "",
+            "subject": "Test email Lambda",
+            "body": {
+              "text": "Hi Please see this",
+              "html": ""
+            }
+          }
+        }
+      }
+    },
+    "customTemplate": {
+      "dialect": null,
+      "definitions": null
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {
+        "aws-sdk": {
+          "name": "aws-sdk",
+          "language": "javascript",
+          "version": "2.176.0",
+          "dev": true,
+          "notRemovable": false
+        }
+      }
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "TestEmail",
+    "projectDescription": "Email fetch and save in S3",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1575924261366
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "TestEmail",
+      "url": "https://github.com/shikhar200182/TestEmail"
+    }
+  }
+}
